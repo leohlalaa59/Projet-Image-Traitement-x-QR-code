@@ -1,0 +1,14 @@
+D:\Documents\Pb Scientifique info\Problème scientifique\bin\Debug\Problème scientifique.exe.config
+D:\Documents\Pb Scientifique info\Problème scientifique\bin\Debug\Problème scientifique.exe
+D:\Documents\Pb Scientifique info\Problème scientifique\bin\Debug\Problème scientifique.pdb
+D:\Documents\Pb Scientifique info\Problème scientifique\obj\Debug\Problème scientifique.csprojAssemblyReference.cache
+D:\Documents\Pb Scientifique info\Problème scientifique\obj\Debug\Problème scientifique.csproj.CoreCompileInputs.cache
+D:\Documents\Pb Scientifique info\Problème scientifique\obj\Debug\Problème scientifique.exe
+D:\Documents\Pb Scientifique info\Problème scientifique\obj\Debug\Problème scientifique.pdb
+D:\Documents\A2 info\Problème Info S4\Problème scientifique\bin\Debug\Problème scientifique.exe.config
+D:\Documents\A2 info\Problème Info S4\Problème scientifique\bin\Debug\Problème scientifique.exe
+D:\Documents\A2 info\Problème Info S4\Problème scientifique\bin\Debug\Problème scientifique.pdb
+D:\Documents\A2 info\Problème Info S4\Problème scientifique\obj\Debug\Problème scientifique.csprojAssemblyReference.cache
+D:\Documents\A2 info\Problème Info S4\Problème scientifique\obj\Debug\Problème scientifique.csproj.CoreCompileInputs.cache
+D:\Documents\A2 info\Problème Info S4\Problème scientifique\obj\Debug\Problème scientifique.exe
+D:\Documents\A2 info\Problème Info S4\Problème scientifique\obj\Debug\Problème scientifique.pdb
