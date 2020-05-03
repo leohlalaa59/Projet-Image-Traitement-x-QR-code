@@ -17,7 +17,7 @@ namespace Problème_scientifique
             Console.WriteLine("Appuyez sur n'importe quelle touche pour commencer le programme...");
             Console.ReadKey();
             Console.Clear();
-            Console.WriteLine("  ========================  BONJOUR !  ========================");
+            Console.WriteLine("==================================  BONJOUR !  ==================================");
             Console.WriteLine("\nBienvenue dans le projet de traitement d'images de Léo OTSHUDI\n");
             bool a = true;
             string image = " ";
@@ -221,7 +221,7 @@ namespace Problème_scientifique
         static void Filtres(string choiximage) //OK
         {
             Console.Clear();
-            Console.WriteLine("  =========================  CONVOLUTION  =========================");
+            Console.WriteLine("==================================  CONVOLUTION  ==================================");
             Console.WriteLine("\nVous avez choisi de travailler avec les filtres et matrices de convolution.");
             bool b = true;
             string chx = " ";
@@ -256,7 +256,7 @@ namespace Problème_scientifique
         static void Cacher(string choiximage)
         {
             Console.Clear();
-            Console.WriteLine("  ===========================  CACHER  ===========================");
+            Console.WriteLine("================================  STENOGRAPHIE  ================================");
             Console.WriteLine("\nVous avez choisi de travailler avec les filtres et matrices de convolution.");
             Console.WriteLine("\n\nAppuyez sur une touche pour continuer...");
             Console.ReadKey();
@@ -318,26 +318,63 @@ namespace Problème_scientifique
         static void QRCode()
         {
             Console.Clear();
-            Console.WriteLine("  ===========================  QR Code  ===========================");
+            Console.WriteLine("==================================  QR Code  ==================================");
             Console.WriteLine("\nVous avez choisi de générer un QR code à partir d'une chaîne de caractères");
             Console.WriteLine("\n\nAppuyez sur une touche pour continuer...");
             Console.ReadKey();
-            Console.WriteLine("\nVeuillez entrer la chaine de caractères :");
-            string chaine = Console.ReadLine().ToUpper();
-            QRCode monQRCode = new QRCode(chaine);
-            Console.WriteLine("\n\n\n\n" + monQRCode.QRChain);
-            Console.WriteLine(monQRCode.QRChain.Length);
+            Console.Clear();
+            string version = "";
+            QRCode monQRCode;
+            string chaine = "";
+            bool a = true;
+            while(a)
+            {
+                Console.WriteLine("==================================  QR Code  ==================================");
+                Console.WriteLine("\nVeuillez entrer la chaine de caractères :");
+                chaine = Console.ReadLine().ToUpper();
+                if (chaine.Length <= 47) { a = false; }
+                else
+                {
+                    Console.WriteLine("\n\nLa chaine de caractères est trop longue ; veuillez saisir une chaine de 47 caractères ou moins.");
+                    Console.WriteLine("\n\nAppuyez sur une touche pour une nouvelle saisie...");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
+            if (chaine.Length > 25 && chaine.Length <= 47)
+            {
+                Console.WriteLine("\n\nUn QR code de version 2 sera utilisé.");
+                Console.WriteLine("\n\nAppuyez sur une touche pour afficher le QR code...");
+                Console.ReadKey();
+                version = "2";
+                monQRCode = new QRCode(chaine, version);
+            }
+            else
+            {
+                bool saisie = true;
+                while (saisie)
+                {
+                    Console.WriteLine("\n\nQuelle version de code QR souhaitez vous utiliser ? (1 ou 2)");
+                    version = Console.ReadLine();
+                    if (version == "1" || version == "2") { saisie = false; }
+                    else { Console.WriteLine("Saisie invalide. Veuillez rentrer le n° de la version"); }
+                }
+                Console.WriteLine("\n\nUn QR code de version " + version + " sera donc utilisé.");
+                Console.WriteLine("\n\nAppuyez sur une touche pour continuer...");
+                Console.ReadKey();
+                monQRCode = new QRCode(chaine, version);
+            }
+
+            /// Simple affichage de la chaine de bits intégrale du code QR avec l'erreur
+            Console.WriteLine("\n\n\n" + monQRCode.QRChainWithErr);
+            Console.WriteLine("\nQR code bits chain length :\n" + monQRCode.QRChainWithErr.Length);
+
             MyImage monimage = new MyImage();
-            byte[,,] imgcarrée = monimage.FromFiletoMatrix("lena.bmp"); /// On définit une matrice carrée, afin d'en récupérer simplement le header
+            byte[,,] imgcarrée = monimage.FromFiletoMatrix("lena.bmp"); /// On prend n'importe quelle image, afin d'en récupérer le header et d'évite de devoir réécrire l'intégralité de 54 bits
+            
+            byte[,,] qrcodematrix = monQRCode.GenerateQRCodeImage(monQRCode.QRChainWithErr);
 
-            string chaine_bits = monQRCode.QR_Code_Chain();
-            string chaine_bits_error = monQRCode.QRCode_with_error(chaine_bits);
-        
-            byte[,,] qrcodematrix = monQRCode.GenerateQRCodeImage(chaine_bits_error);
-            // Pour l'instant on a monimage.pixelsRGB = imgcarrée, le header c'est celui de lena, 
-            // On veut avoir monimage.pixelRGB = matrixqrcode, le header celui de lena modifié avec les dimensions du qr code
             monimage.QRCodeImage(qrcodematrix);
-
         }
         #endregion
     }
